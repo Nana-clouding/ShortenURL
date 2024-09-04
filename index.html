@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>URL短縮サービス bitly</title>
+    <title>URL短縮サービス </title>
     <script>
+        let shortenedUrl = '';
+
         async function shortenUrl() {
             const longUrl = document.getElementById('longUrl').value;
             const apiKey = '995f429a96429b311056cd1cf4213980735778b6'; // ここにBitlyのAPIキーを入力
@@ -26,7 +28,8 @@
 
                 const data = await response.json();
                 if (data.link) {
-                    document.getElementById('shortenedUrl').textContent = `短縮URL: ${data.link}`;
+                    shortenedUrl = data.link;
+                    document.getElementById('shortenedUrl').textContent = `短縮URL: ${shortenedUrl}`;
                 } else {
                     document.getElementById('shortenedUrl').textContent = '短縮URLの作成に失敗しました。';
                 }
@@ -35,6 +38,30 @@
                 console.error(error);
             }
         }
+
+        function copyUrl() {
+            if (shortenedUrl) {
+                navigator.clipboard.writeText(shortenedUrl)
+                    .then(() => alert('短縮URLがコピーされました。'))
+                    .catch(err => console.error('コピーに失敗しました:', err));
+            } else {
+                alert('短縮URLがまだ生成されていません。');
+            }
+        }
+
+        function openUrl() {
+            if (shortenedUrl) {
+                window.open(shortenedUrl, '_blank');
+            } else {
+                alert('短縮URLがまだ生成されていません。');
+            }
+        }
+
+        function reset() {
+            document.getElementById('longUrl').value = '';
+            document.getElementById('shortenedUrl').textContent = '短縮URLがここに表示されます...';
+            shortenedUrl = '';
+        }
     </script>
 </head>
 <body>
@@ -42,6 +69,9 @@
     <label for="longUrl">短縮したいURL:</label>
     <input type="text" id="longUrl" placeholder="例:https://google.com/">
     <button onclick="shortenUrl()">URLを短縮</button>
+    <button onclick="copyUrl()">コピー</button>
+    <button onclick="openUrl()">開く</button>
+    <button onclick="reset()">再作成</button>
     <p id="shortenedUrl">短縮URLがここに表示されます...</p>
 </body>
 </html>
