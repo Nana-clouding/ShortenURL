@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>URL短縮サービス</title>
+    <title>URL短縮サービス bitly</title>
     <script>
         async function shortenUrl() {
             const longUrl = document.getElementById('longUrl').value;
@@ -39,8 +39,8 @@
 </head>
 <body>
     <h1>URL短縮サービス</h1>
-    <label for="longUrl">長いURL:</label>
-    <input type="text" id="longUrl" placeholder="長いURLを入力してください">
+    <label for="longUrl">短縮したいURL:</label>
+    <input type="text" id="longUrl" placeholder="短縮したいURLを入力">
     <button onclick="shortenUrl()">URLを短縮</button>
     <p id="shortenedUrl">短縮URLがここに表示されます...</p>
 </body>
