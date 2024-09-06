@@ -6,15 +6,50 @@
     <title>URL短縮サービス</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             padding: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        h1 {
+            color: #4a90e2;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         input, button {
             margin-top: 10px;
-            display: block;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            width: calc(100% - 22px);
+            box-sizing: border-box;
         }
         button {
+            background-color: #4a90e2;
+            color: #fff;
+            border: none;
             cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #357abd;
+        }
+        button:active {
+            background-color: #2d6aa2;
+        }
+        p {
+            font-size: 1.1em;
+            color: #666;
+        }
+        label {
+            font-weight: bold;
         }
     </style>
     <script>
@@ -78,13 +113,15 @@
     </script>
 </head>
 <body>
-    <h1>URL短縮サービス</h1>
-    <label for="longUrl">短縮したいURL:</label>
-    <input type="text" id="longUrl" placeholder="例:https://google.com/">
-    <button onclick="shortenUrl()">URLを短縮</button>
-    <button onclick="copyUrl()">コピー</button>
-    <button onclick="openUrl()">開く</button>
-    <button onclick="reset()">再作成</button>
-    <p id="shortenedUrl">短縮URLがここに表示されます...</p>
+    <div class="container">
+        <h1>URL短縮サービス</h1>
+        <label for="longUrl">短縮したいURL:</label>
+        <input type="text" id="longUrl" placeholder="例:https://google.com/">
+        <button onclick="shortenUrl()">URLを短縮</button>
+        <button onclick="copyUrl()">コピー</button>
+        <button onclick="openUrl()">開く</button>
+        <button onclick="reset()">再作成</button>
+        <p id="shortenedUrl">短縮URLがここに表示されます...</p>
+    </div>
 </body>
 </html>
