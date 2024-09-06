@@ -3,13 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>URL短縮サービス </title>
+    <title>URL短縮サービス</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        input, button {
+            margin-top: 10px;
+            display: block;
+        }
+        button {
+            cursor: pointer;
+        }
+    </style>
     <script>
         let shortenedUrl = '';
 
         async function shortenUrl() {
             const longUrl = document.getElementById('longUrl').value;
-            const apiKey = '99b1b4791117555c2b02d6fb200798094bb921bf'; // ここにBitlyのAPIキーを入力
+            const apiKey = '99b1b4791117555c2b02d6fb200798094bb921bf'; // セキュリティのため、サーバーサイドで処理するのが推奨されます
 
             if (!longUrl) {
                 alert('短縮したいURLを入力してください。');
@@ -27,7 +40,7 @@
                 });
 
                 const data = await response.json();
-                if (data.link) {
+                if (response.ok && data.link) {
                     shortenedUrl = data.link;
                     document.getElementById('shortenedUrl').textContent = `短縮URL: ${shortenedUrl}`;
                 } else {
@@ -35,7 +48,7 @@
                 }
             } catch (error) {
                 document.getElementById('shortenedUrl').textContent = 'エラーが発生しました。';
-                console.error(error);
+                console.error('エラー:', error);
             }
         }
 
